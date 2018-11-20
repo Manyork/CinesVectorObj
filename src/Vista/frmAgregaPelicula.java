@@ -408,7 +408,7 @@ public class frmAgregaPelicula extends javax.swing.JDialog {
             origen = chooser.path;
             String rutaFondo = System.getProperty("java.class.path") + "\\img\\" + idImg;
             String rut[] = rutaFondo.split(";");
-            destino = rut[1];
+            destino = rut[0];
 
             Path FROM = Paths.get(origen);
             Path TO = Paths.get(destino);
