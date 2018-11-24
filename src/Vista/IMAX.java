@@ -90,6 +90,8 @@ public class IMAX extends javax.swing.JFrame {
         // TODO add your handling code here:
 frmPeliculas peli= new frmPeliculas(null, true);
 peli.setVisible(true);
+// New commment here
+
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
