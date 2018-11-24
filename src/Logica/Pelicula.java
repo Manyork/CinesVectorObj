@@ -10,7 +10,6 @@ package Logica;
  * @author Jon
  */
 public class Pelicula {
-
     private int id;
     private String titulo;
     private String genero;
