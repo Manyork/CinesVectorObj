@@ -7,14 +7,13 @@ package Vista;
 
 import Datos.DatosPelicula;
 import Logica.Pelicula;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Jon
  */
-public class frmPeliculas extends javax.swing.JDialog {
+public class frmProgramacion extends javax.swing.JDialog {
 
     DefaultTableModel modelo;
     DatosPelicula almacenaPeli = new DatosPelicula(20);
@@ -23,7 +22,7 @@ public class frmPeliculas extends javax.swing.JDialog {
     /**
      * Creates new form frmPeliculas
      */
-    public frmPeliculas(java.awt.Frame parent, boolean modal) {
+    public frmProgramacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -96,11 +95,6 @@ public class frmPeliculas extends javax.swing.JDialog {
 
             btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
             btnEliminar.setText("Eliminar");
-            btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    btnEliminarActionPerformed(evt);
-                }
-            });
 
             javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
             jPanel1.setLayout(jPanel1Layout);
@@ -170,7 +164,7 @@ public class frmPeliculas extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(lblRegistros)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap(15, Short.MAX_VALUE))
             );
 
             pack();
@@ -247,39 +241,6 @@ public class frmPeliculas extends javax.swing.JDialog {
         lblRegistros.setText("Cantidad de registros: " + String.valueOf(modelo.getRowCount()));
     }//GEN-LAST:event_txtBuscarKeyReleased
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-        int a = tblPeliculas.getSelectedRow();
-
-          if (a < 0) {
-
-            JOptionPane.showMessageDialog(null,
-                    "Debe seleccionar una fila de la tabla");
-        } else {
-
-            int confirmar = JOptionPane.showConfirmDialog(null,
-                    "¿Esta seguro que desea Eliminar el registro?");
-impTabla();
-            if (JOptionPane.OK_OPTION == confirmar) {
-                if(almacenaPeli.eliminarPelicula(a, peliObj)){
-                modelo.removeRow(a);
-                }
-                
-
-                JOptionPane.showMessageDialog(null,
-                        "Registro Eliminado");
-            }
-        }
-
-    }//GEN-LAST:event_btnEliminarActionPerformed
-public void impTabla(){
-  for (int i = 0; i < almacenaPeli.getNumRegs(); i++) {
-       peliObj = almacenaPeli.getRegistro(i);
-            System.out.println( i +"-"+ peliObj.getId()+"-"+ peliObj.getTitulo());
-         
-        }
-
-}
     /**
      * @param args the command line arguments
      */
@@ -297,20 +258,21 @@ public void impTabla(){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmPeliculas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProgramacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmPeliculas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProgramacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmPeliculas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProgramacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmPeliculas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmProgramacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                frmPeliculas dialog = new frmPeliculas(new javax.swing.JFrame(), true);
+                frmProgramacion dialog = new frmProgramacion(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -321,7 +283,7 @@ public void impTabla(){
             }
         });
     }
-
+    
     public void cargaTabla() {
         String titulos[] = {"ID", "Título", "Género", "Duración", "Idioma", "Clasificación",
             "Tipo"};

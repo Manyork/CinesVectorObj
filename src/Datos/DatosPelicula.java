@@ -41,6 +41,22 @@ public class DatosPelicula {
         }
         return false;
     }
+      public boolean eliminarPelicula(int pos, Pelicula peliObj) {
+        if (this.numRegs < this.vect.length - 1) {
+           for (int i = 0; i < vect.length; i++) {
+            if (i == pos) {
+                for (int j = i; j < vect.length - 1; j++) {
+                    vect[j] = vect[j+1];
+                }
+                return true;
+            }
+           }   
+        }
+        return false;
+    }
+    
+    
+    
     public boolean editaPelicula (int pos, Pelicula peliObj){
         if (pos>=0 && pos < this.numRegs){
             this.vect[pos]=peliObj;
