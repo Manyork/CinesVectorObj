@@ -41,6 +41,13 @@ public class DatosTanda {
         }
         return false;
     }
+     public boolean editaTanda(int pos, Tanda tandaObj){
+        if (pos>=0 && pos < this.numRegs){
+            this.vect[pos]=tandaObj;
+            return true;
+        }
+        return false;
+    }
 
     public Tanda getRegistro(int pos) {
         return this.vect[pos];
@@ -57,6 +64,24 @@ public class DatosTanda {
         }
 
         return false;
+    }
+    
+     public boolean eliminarTanda(int pos) {
+        if (this.numRegs > 1) {
+            for (int i = 0; i < this.numRegs; i++) {
+                if (i == pos) {
+                    for (int j = i; j < this.numRegs - 1; j++) {
+                        vect[j] = vect[j + 1];
+                    }
+
+                }
+            }
+            this.numRegs--;
+            return true;
+
+        }
+        return false;
+
     }
 
 }

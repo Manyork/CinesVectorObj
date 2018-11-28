@@ -18,9 +18,10 @@ import javax.swing.JOptionPane;
  * @author Jon
  */
 public class frmAgregaTanda extends javax.swing.JDialog {
-
+    
     DatosTanda almacenaTanda;
     SimpleDateFormat hour = new SimpleDateFormat("hh:mma");
+    int posi, operac;
 
     /**
      * Creates new form frmAgregaTanda
@@ -29,12 +30,13 @@ public class frmAgregaTanda extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-
-    public frmAgregaTanda(java.awt.Frame parent, boolean modal,
-            DatosTanda almTanda) {
+    
+    public frmAgregaTanda(java.awt.Frame parent, boolean modal, DatosTanda almTanda, int pos, int operacion) {
         super(parent, modal);
         initComponents();
         this.almacenaTanda = almTanda;
+        this.posi = pos;
+        this.operac = operacion;
     }
 
     /**
@@ -58,6 +60,11 @@ public class frmAgregaTanda extends javax.swing.JDialog {
         btnLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -187,26 +194,35 @@ public class frmAgregaTanda extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-
         String valTipo = "";
-
         if (!txtId.getText().equals("") && !dtpTanda.getText().equals("")) {
-            if (!almacenaTanda.alreadyExist(Integer.parseInt(txtId.getText()))) {
-                try {
-                  
-                    Tanda tandaObj = new Tanda(Integer.parseInt(txtId.getText()), hour.parse(dtpTanda.getText()));
-                
-                if (almacenaTanda.insertTanda(tandaObj)) {
-                    JOptionPane.showMessageDialog(this, "Resgistro almacenado");
+            String strDate = dtpTanda.getText();
+            try {
+                Tanda tandaObj = new Tanda(Integer.parseInt(txtId.getText()), hour.parse(strDate));
+            
+            if (operac == 1) {   //Se guarda un nuevo registro
+                if (!almacenaTanda.alreadyExist(Integer.parseInt(txtId.getText()))) {
+                    
+                    if (almacenaTanda.insertTanda(tandaObj)) {
+                        JOptionPane.showMessageDialog(this, "Registro almacenado");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Vector lleno, borre registros");
+                    }
+                    
                 } else {
-                    JOptionPane.showMessageDialog(this, "Vector lleno, borre registros");
+                    JOptionPane.showMessageDialog(this, "El id ya existe");
                 }
-                } catch (ParseException ex) {
+            } else { //Editar un registro existente
 
+                if (almacenaTanda.editaTanda(posi, tandaObj)) {
+                    JOptionPane.showMessageDialog(this, "Resgistro Editado");
+                    txtId.setEditable(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error de edición");
                 }
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "El ID de la sala ya existe");
+            }
+            this.dispose();
+            } catch (Exception e) {
             }
         } else {
             JOptionPane.showMessageDialog(this, "Faltan Datos");
@@ -218,11 +234,23 @@ public class frmAgregaTanda extends javax.swing.JDialog {
         isNumberTyped(evt);
     }//GEN-LAST:event_txtIdKeyTyped
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+            Tanda salaObj;
+        if (operac == 2) {
+            txtId.setEditable(false);
+            salaObj = almacenaTanda.getRegistro(posi);
+            txtId.setText(String.valueOf(salaObj.getIdTanda()));
+            dtpTanda.setText(String.valueOf(hour.format(salaObj.getHora())));
+   
+        }
+    }//GEN-LAST:event_formWindowActivated
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 frmAgregaTanda dialog = new frmAgregaTanda(new javax.swing.JFrame(), true);

@@ -5,8 +5,8 @@
  */
 package Vista;
 
-import Datos.DatosPelicula;
-import Logica.Pelicula;
+import Datos.DatosProgramacion;
+import Logica.Programacion;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,8 +16,8 @@ import javax.swing.table.DefaultTableModel;
 public class frmProgramacion extends javax.swing.JDialog {
 
     DefaultTableModel modelo;
-    DatosPelicula almacenaPeli = new DatosPelicula(20);
-    Pelicula peliObj = new Pelicula();
+    DatosProgramacion almacenaProgra = new DatosProgramacion(20);
+    Programacion prograObj = new Programacion();
 
     /**
      * Creates new form frmPeliculas
@@ -172,10 +172,10 @@ public class frmProgramacion extends javax.swing.JDialog {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        frmAgregaPelicula win = new frmAgregaPelicula(null, true, almacenaPeli, -1, 1);
+        frmAgregaProgramacion win = new frmAgregaProgramacion(null, true, almacenaProgra, -1, 1);
         win.setTitle("Agregar Película Nueva");
         win.setVisible(true);
-        almacenaPeli = win.almacenaPeli;
+        almacenaProgra = win.almacenaProgra;
         cargaTabla();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -190,55 +190,55 @@ public class frmProgramacion extends javax.swing.JDialog {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         // TODO add your handling code here:
-        if (tblPeliculas.getSelectedRow() >= 0) {
-            frmAgregaPelicula win = new frmAgregaPelicula(null, true, almacenaPeli, tblPeliculas.getSelectedRow(), 2);
-            win.setTitle("Actualizar Película");
-            win.setVisible(true);
-            almacenaPeli = win.almacenaPeli;
-            cargaTabla();
-        }
+//        if (tblPeliculas.getSelectedRow() >= 0) {
+//            frmAgregaProgramacion win = new frmAgregaProgramacion(null, true, almacenaProgra, tblPeliculas.getSelectedRow(), 2);
+//            win.setTitle("Actualizar Película");
+//            win.setVisible(true);
+//            almacenaProgra = win.almacenaPeli;
+//            cargaTabla();
+//        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         // TODO add your handling code here:
 
-        String titulos[] = {"ID", "Título", "Género", "Duración", "Idioma", "Clasificación",
-            "Tipo"};
-        modelo = new DefaultTableModel(null, titulos);
-
-        for (int i = 0; i < almacenaPeli.getNumRegs(); i++) {
-            peliObj = almacenaPeli.getRegistro(i);
-
-            switch (cmbBuscar.getSelectedIndex()) {
-                case 0:
-                    if (peliObj.getTitulo().contains(txtBuscar.getText())) {
-                        Object nuevaFila[] = {peliObj.getId(), peliObj.getTitulo(), peliObj.getGenero(),
-                            peliObj.getDuracion(), peliObj.getIdioma(), peliObj.getClasif(),
-                            peliObj.getTipo()};
-                        modelo.addRow(nuevaFila);
-                    }
-                    break;
-                case 1:
-                    if (peliObj.getGenero().contains(txtBuscar.getText())) {
-                        Object nuevaFila[] = {peliObj.getId(), peliObj.getTitulo(), peliObj.getGenero(),
-                            peliObj.getDuracion(), peliObj.getIdioma(), peliObj.getClasif(),
-                            peliObj.getTipo()};
-                        modelo.addRow(nuevaFila);
-                    }
-                    break;
-                case 2:
-                    if (peliObj.getTipo().contains(txtBuscar.getText())) {
-                        Object nuevaFila[] = {peliObj.getId(), peliObj.getTitulo(), peliObj.getGenero(),
-                            peliObj.getDuracion(), peliObj.getIdioma(), peliObj.getClasif(),
-                            peliObj.getTipo()};
-                        modelo.addRow(nuevaFila);
-                    }
-                    break;
-            }
-        }
-        tblPeliculas.setModel(modelo);
-
-        lblRegistros.setText("Cantidad de registros: " + String.valueOf(modelo.getRowCount()));
+//        String titulos[] = {"ID", "Título", "Género", "Duración", "Idioma", "Clasificación",
+//            "Tipo"};
+//        modelo = new DefaultTableModel(null, titulos);
+//
+//        for (int i = 0; i < almacenaPeli.getNumRegs(); i++) {
+//            peliObj = almacenaPeli.getRegistro(i);
+//
+//            switch (cmbBuscar.getSelectedIndex()) {
+//                case 0:
+//                    if (peliObj.getTitulo().contains(txtBuscar.getText())) {
+//                        Object nuevaFila[] = {peliObj.getId(), peliObj.getTitulo(), peliObj.getGenero(),
+//                            peliObj.getDuracion(), peliObj.getIdioma(), peliObj.getClasif(),
+//                            peliObj.getTipo()};
+//                        modelo.addRow(nuevaFila);
+//                    }
+//                    break;
+//                case 1:
+//                    if (peliObj.getGenero().contains(txtBuscar.getText())) {
+//                        Object nuevaFila[] = {peliObj.getId(), peliObj.getTitulo(), peliObj.getGenero(),
+//                            peliObj.getDuracion(), peliObj.getIdioma(), peliObj.getClasif(),
+//                            peliObj.getTipo()};
+//                        modelo.addRow(nuevaFila);
+//                    }
+//                    break;
+//                case 2:
+//                    if (peliObj.getTipo().contains(txtBuscar.getText())) {
+//                        Object nuevaFila[] = {peliObj.getId(), peliObj.getTitulo(), peliObj.getGenero(),
+//                            peliObj.getDuracion(), peliObj.getIdioma(), peliObj.getClasif(),
+//                            peliObj.getTipo()};
+//                        modelo.addRow(nuevaFila);
+//                    }
+//                    break;
+//            }
+//        }
+//        tblPeliculas.setModel(modelo);
+//
+//        lblRegistros.setText("Cantidad de registros: " + String.valueOf(modelo.getRowCount()));
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     /**
@@ -283,17 +283,16 @@ public class frmProgramacion extends javax.swing.JDialog {
             }
         });
     }
-    
+
     public void cargaTabla() {
-        String titulos[] = {"ID", "Título", "Género", "Duración", "Idioma", "Clasificación",
+        String titulos[] = {"ID", "FECHA", "PELICULA", "SALA", "TANDA",
             "Tipo"};
         modelo = new DefaultTableModel(null, titulos);
 
-        for (int i = 0; i < almacenaPeli.getNumRegs(); i++) {
-            peliObj = almacenaPeli.getRegistro(i);
-            Object nuevaFila[] = {peliObj.getId(), peliObj.getTitulo(), peliObj.getGenero(),
-                peliObj.getDuracion(), peliObj.getIdioma(), peliObj.getClasif(),
-                peliObj.getTipo()};
+        for (int i = 0; i < almacenaProgra.getNumRegs(); i++) {
+            prograObj = almacenaProgra.getRegistro(i);
+            Object nuevaFila[] = {prograObj.getIdProgramacion(), prograObj.getHora(), prograObj.getPelicula(),
+                prograObj.getSala(), prograObj.getTanda()};
             modelo.addRow(nuevaFila);
         }
         tblPeliculas.setModel(modelo);

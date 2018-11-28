@@ -259,27 +259,21 @@ public class frmPeliculas extends javax.swing.JDialog {
 
             int confirmar = JOptionPane.showConfirmDialog(null,
                     "¿Esta seguro que desea Eliminar el registro?");
-impTabla();
+
             if (JOptionPane.OK_OPTION == confirmar) {
-                if(almacenaPeli.eliminarPelicula(a, peliObj)){
+                if(almacenaPeli.eliminarPelicula(a)){
                 modelo.removeRow(a);
                 }
-                
-
-                JOptionPane.showMessageDialog(null,
+                 JOptionPane.showMessageDialog(null,
                         "Registro Eliminado");
+                 if(almacenaPeli.getNumRegs()>1){
+                 cargaTabla();
+                 
+                 } 
             }
         }
 
     }//GEN-LAST:event_btnEliminarActionPerformed
-public void impTabla(){
-  for (int i = 0; i < almacenaPeli.getNumRegs(); i++) {
-       peliObj = almacenaPeli.getRegistro(i);
-            System.out.println( i +"-"+ peliObj.getId()+"-"+ peliObj.getTitulo());
-         
-        }
-
-}
     /**
      * @param args the command line arguments
      */

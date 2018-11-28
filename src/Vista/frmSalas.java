@@ -7,6 +7,7 @@ package Vista;
 
 import Datos.DatosSala;
 import Logica.Sala;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,7 +19,7 @@ public class frmSalas extends javax.swing.JDialog {
     DefaultTableModel modelo;
     DatosSala almacenaSala = new DatosSala(20);
     Sala salaObj = new Sala();
-     String titulos[] = {"ID", "Cantidad"};
+    String titulos[] = {"ID", "Cantidad"};
 
     /**
      * Creates new form frmSalas
@@ -96,6 +97,11 @@ public class frmSalas extends javax.swing.JDialog {
 
             btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
             btnEliminar.setText("Eliminar");
+            btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btnEliminarActionPerformed(evt);
+                }
+            });
 
             javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
             jPanel1.setLayout(jPanel1Layout);
@@ -193,7 +199,7 @@ public class frmSalas extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (tblSalas.getSelectedRow() >= 0) {
             frmAgregaSala win = new frmAgregaSala(null, true, almacenaSala, tblSalas.getSelectedRow(), 2);
-            win.setTitle("Actualizar Película");
+            win.setTitle("Actualizar Sala");
             win.setVisible(true);
             almacenaSala = win.almacenaSala;
             cargaTabla();
@@ -202,7 +208,6 @@ public class frmSalas extends javax.swing.JDialog {
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         // TODO add your handling code here:
-
         modelo = new DefaultTableModel(null, titulos);
 
         for (int i = 0; i < almacenaSala.getNumRegs(); i++) {
@@ -211,22 +216,49 @@ public class frmSalas extends javax.swing.JDialog {
             switch (cmbBuscar.getSelectedIndex()) {
                 case 0:
                     if (salaObj.getIdSala().toString().contains(txtBuscar.getText())) {
-                        Object nuevaFila[] = {salaObj.getIdSala(),salaObj.getCapacidad()};
+                        Object nuevaFila[] = {salaObj.getIdSala(), salaObj.getCapacidad()};
                         modelo.addRow(nuevaFila);
                     }
                     break;
                 case 1:
-                      if (salaObj.getCapacidad().toString().contains(txtBuscar.getText())) {
-                        Object nuevaFila[] = {salaObj.getIdSala(),salaObj.getCapacidad()};
+                    if (salaObj.getCapacidad().toString().contains(txtBuscar.getText())) {
+                        Object nuevaFila[] = {salaObj.getIdSala(), salaObj.getCapacidad()};
                         modelo.addRow(nuevaFila);
                     }
                     break;
-                          }
+            }
         }
         tblSalas.setModel(modelo);
 
         lblRegistros.setText("Cantidad de registros: " + String.valueOf(modelo.getRowCount()));
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        int a = tblSalas.getSelectedRow();
+
+        if (a < 0) {
+
+            JOptionPane.showMessageDialog(null,
+                    "Debe seleccionar una fila de la tabla");
+        } else {
+
+            int confirmar = JOptionPane.showConfirmDialog(null,
+                    "¿Esta seguro que desea Eliminar el registro?");
+
+            if (JOptionPane.OK_OPTION == confirmar) {
+                if (almacenaSala.eliminarSala(a)) {
+                    modelo.removeRow(a);
+                }
+                JOptionPane.showMessageDialog(null,
+                        "Registro Eliminado");
+                if (almacenaSala.getNumRegs() > 1) {
+                    cargaTabla();
+
+                }
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,9 +302,9 @@ public class frmSalas extends javax.swing.JDialog {
             }
         });
     }
-    
+
     public void cargaTabla() {
-       
+
         modelo = new DefaultTableModel(null, titulos);
 
         for (int i = 0; i < almacenaSala.getNumRegs(); i++) {
@@ -281,7 +313,6 @@ public class frmSalas extends javax.swing.JDialog {
             modelo.addRow(nuevaFila);
         }
         tblSalas.setModel(modelo);
-
         lblRegistros.setText("Cantidad de registros: " + String.valueOf(modelo.getRowCount()));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
