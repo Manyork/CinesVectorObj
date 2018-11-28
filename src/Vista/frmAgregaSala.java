@@ -211,7 +211,7 @@ public class frmAgregaSala extends javax.swing.JDialog {
                 }
             } else { //Editar un registro existente
 
-                if (almacenaSala.editaPelicula(posi, salaObj)) {
+                if (almacenaSala.editaSala(posi, salaObj)) {
                     JOptionPane.showMessageDialog(this, "Resgistro Editado");
                     txtId.setEditable(true);
                 } else {

@@ -41,18 +41,22 @@ public class DatosPelicula {
         }
         return false;
     }
-      public boolean eliminarPelicula(int pos, Pelicula peliObj) {
-        if (this.numRegs < this.vect.length - 1) {
-           for (int i = 0; i < vect.length; i++) {
-            if (i == pos) {
-                for (int j = i; j < vect.length - 1; j++) {
-                    vect[j] = vect[j+1];
+   public boolean eliminarPelicula(int pos) {
+        if (this.numRegs > 1) {
+            for (int i = 0; i < this.numRegs; i++) {
+                if (i == pos) {
+                    for (int j = i; j < this.numRegs - 1; j++) {
+                        vect[j] = vect[j + 1];
+                    }
+
                 }
-                return true;
             }
-           }   
+            this.numRegs--;
+            return true;
+
         }
         return false;
+
     }
     
     
@@ -70,6 +74,7 @@ public class DatosPelicula {
     }
 
     public boolean yaExiste(int id) {
+        System.err.println(this.getNumRegs());
         if (this.numRegs != 0) {
             for (int i=0; i<this.numRegs; i++) {
                 if (this.vect[i].getId() == id) {

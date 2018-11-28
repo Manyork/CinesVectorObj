@@ -9,7 +9,7 @@ import Logica.Sala;
 
 /**
  *
- * @author 
+ * @author
  */
 public class DatosSala {
 
@@ -41,10 +41,10 @@ public class DatosSala {
         }
         return false;
     }
-    
-    public boolean editaPelicula (int pos, Sala salaObj){
-        if (pos>=0 && pos < this.numRegs){
-            this.vect[pos]=salaObj;
+
+    public boolean editaSala(int pos, Sala salaObj) {
+        if (pos >= 0 && pos < this.numRegs) {
+            this.vect[pos] = salaObj;
             return true;
         }
         return false;
@@ -57,7 +57,7 @@ public class DatosSala {
     public boolean alreadyExist(int id) {
         if (this.numRegs != 0) {
             for (int i = 0; i < this.numRegs; i++) {
-                if (vect[i].getIdSala()== id) {
+                if (vect[i].getIdSala() == id) {
 
                     return true;
                 }
@@ -67,4 +67,21 @@ public class DatosSala {
         return false;
     }
 
+    public boolean eliminarSala(int pos) {
+        if (this.numRegs > 1) {
+            for (int i = 0; i < this.numRegs; i++) {
+                if (i == pos) {
+                    for (int j = i; j < this.numRegs - 1; j++) {
+                        vect[j] = vect[j + 1];
+                    }
+
+                }
+            }
+            this.numRegs--;
+            return true;
+
+        }
+        return false;
+
+    }
 }
