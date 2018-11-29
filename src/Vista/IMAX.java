@@ -27,13 +27,17 @@ public class IMAX extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        mnuPeliculas = new javax.swing.JMenuItem();
+        mnuSalas = new javax.swing.JMenuItem();
+        mnuTandas = new javax.swing.JMenuItem();
+        mnuProgramacion = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,24 +46,37 @@ public class IMAX extends javax.swing.JFrame {
         jMenu1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jMenu1.setText("Mantenimientos");
 
-        jMenuItem1.setText("Mantenimiento Peliculas");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mnuPeliculas.setText("Mantenimiento Peliculas");
+        mnuPeliculas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mnuPeliculasActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(mnuPeliculas);
 
-        jMenuItem2.setText("Mantenimiento Salas");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mnuSalas.setText("Mantenimiento Salas");
+        mnuSalas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mnuSalasActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(mnuSalas);
 
-        jMenuItem3.setText("Mantenimiento Tandas");
-        jMenu1.add(jMenuItem3);
+        mnuTandas.setText("Mantenimiento Tandas");
+        mnuTandas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuTandasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuTandas);
+
+        mnuProgramacion.setText("Mantenimiento Programación");
+        mnuProgramacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuProgramacionMouseClicked(evt);
+            }
+        });
+        jMenu1.add(mnuProgramacion);
 
         jMenuBar1.add(jMenu1);
 
@@ -82,18 +99,28 @@ public class IMAX extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mnuSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSalasActionPerformed
+        frmSalas win = new frmSalas(null, true);
+        win.setVisible(true);
+    }//GEN-LAST:event_mnuSalasActionPerformed
+
+    private void mnuPeliculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPeliculasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+        frmPeliculas win = new frmPeliculas(null, true);
+        win.setVisible(true);
+    }//GEN-LAST:event_mnuPeliculasActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mnuTandasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTandasActionPerformed
         // TODO add your handling code here:
-frmPeliculas peli= new frmPeliculas(null, true);
-peli.setVisible(true);
-// New commment here
+        frmTandas win= new frmTandas(null, true);
+        win.setVisible(true);
+    }//GEN-LAST:event_mnuTandasActionPerformed
 
-
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void mnuProgramacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuProgramacionMouseClicked
+        // TODO add your handling code here:
+        frmAgregaProgramacion win = new frmAgregaProgramacion(null, true);
+         win.setVisible(true);
+    }//GEN-LAST:event_mnuProgramacionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -136,7 +163,9 @@ peli.setVisible(true);
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem mnuPeliculas;
+    private javax.swing.JMenu mnuProgramacion;
+    private javax.swing.JMenuItem mnuSalas;
+    private javax.swing.JMenuItem mnuTandas;
     // End of variables declaration//GEN-END:variables
 }
