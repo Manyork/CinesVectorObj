@@ -41,14 +41,14 @@ public class DatosProgramacion {
         }
         return false;
     }
-   public boolean eliminarProgramacion(int pos) {
+
+    public boolean eliminarProgramacion(int pos) {
         if (this.numRegs > 1) {
             for (int i = 0; i < this.numRegs; i++) {
                 if (i == pos) {
                     for (int j = i; j < this.numRegs - 1; j++) {
                         vect[j] = vect[j + 1];
                     }
-
                 }
             }
             this.numRegs--;
@@ -58,12 +58,10 @@ public class DatosProgramacion {
         return false;
 
     }
-    
-    
-    
-    public boolean editaProgramacion (int pos, Programacion PrograObj){
-        if (pos>=0 && pos < this.numRegs){
-            this.vect[pos]=PrograObj;
+
+    public boolean editaProgramacion(int pos, Programacion PrograObj) {
+        if (pos >= 0 && pos < this.numRegs) {
+            this.vect[pos] = PrograObj;
             return true;
         }
         return false;
@@ -76,14 +74,13 @@ public class DatosProgramacion {
     public boolean yaExiste(int id) {
         System.err.println(this.getNumRegs());
         if (this.numRegs != 0) {
-            for (int i=0; i<this.numRegs; i++) {
-                if (this.vect[i].getIdProgramacion()== id) {
+            for (int i = 0; i < this.numRegs; i++) {
+                if (this.vect[i].getIdProgramacion() == id) {
                     return true;
                 }
             }
         }
         return false;
     }
-
 
 }

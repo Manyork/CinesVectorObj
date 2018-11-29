@@ -11,6 +11,7 @@ import Datos.DatosSala;
 import Datos.DatosTanda;
 import Logica.Programacion;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,6 +28,7 @@ public class frmProgramacion extends javax.swing.JDialog {
     DatosPelicula almacenaPelicula;
     String getPeliName;
     SimpleDateFormat hour = new SimpleDateFormat("EEE, MMM d, ''yy");
+    String titulos[] = {"ID", "FECHA", "PELICULA", "SALA", "TANDA"};
 
     /**
      * Creates new form frmPeliculas
@@ -62,7 +64,7 @@ public class frmProgramacion extends javax.swing.JDialog {
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblPeliculas = new javax.swing.JTable(){
+        tblProgramacion = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int vColIndex) {
                 return false;
             }};
@@ -70,13 +72,6 @@ public class frmProgramacion extends javax.swing.JDialog {
 
             setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
             setTitle("Gestión de Películas");
-            addWindowFocusListener(new java.awt.event.WindowFocusListener() {
-                public void windowGainedFocus(java.awt.event.WindowEvent evt) {
-                    formWindowGainedFocus(evt);
-                }
-                public void windowLostFocus(java.awt.event.WindowEvent evt) {
-                }
-            });
             addWindowListener(new java.awt.event.WindowAdapter() {
                 public void windowActivated(java.awt.event.WindowEvent evt) {
                     formWindowActivated(evt);
@@ -113,6 +108,11 @@ public class frmProgramacion extends javax.swing.JDialog {
 
             btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eliminar.png"))); // NOI18N
             btnEliminar.setText("Eliminar");
+            btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btnEliminarActionPerformed(evt);
+                }
+            });
 
             javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
             jPanel1.setLayout(jPanel1Layout);
@@ -147,7 +147,7 @@ public class frmProgramacion extends javax.swing.JDialog {
                     .addContainerGap(24, Short.MAX_VALUE))
             );
 
-            tblPeliculas.setModel(new javax.swing.table.DefaultTableModel(
+            tblProgramacion.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
 
                 },
@@ -155,12 +155,7 @@ public class frmProgramacion extends javax.swing.JDialog {
 
                 }
             ));
-            tblPeliculas.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    tblPeliculasMouseClicked(evt);
-                }
-            });
-            jScrollPane1.setViewportView(tblPeliculas);
+            jScrollPane1.setViewportView(tblProgramacion);
 
             lblRegistros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
             lblRegistros.setText("Total de registros:");
@@ -204,74 +199,69 @@ public class frmProgramacion extends javax.swing.JDialog {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
+        cargaTabla();
     }//GEN-LAST:event_formWindowActivated
 
-    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_formWindowGainedFocus
-
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
-//        if (tblPeliculas.getSelectedRow() >= 0) {
-//            frmAgregaProgramacion win = new frmAgregaProgramacion(null, true, almacenaProgra, tblPeliculas.getSelectedRow(), 2);
-//            win.setTitle("Actualizar Película");
-//            win.setVisible(true);
-//            almacenaProgra = win.almacenaPeli;
-//            cargaTabla();
-//        }
+        //TODO add your handling code here:
+        if (tblProgramacion.getSelectedRow() >= 0) {
+            frmAgregaProgramacion win = new frmAgregaProgramacion(null, true, almacenaProgra, almacenaPelicula, almacenaSala, almacenaTanda, tblProgramacion.getSelectedRow(), 2);
+            win.setTitle("Actualizar Película");
+            win.setVisible(true);
+            almacenaProgra = win.almacenaProgra;
+            cargaTabla();
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         // TODO add your handling code here:
 
-//        String titulos[] = {"ID", "Título", "Género", "Duración", "Idioma", "Clasificación",
-//            "Tipo"};
-//        modelo = new DefaultTableModel(null, titulos);
-//
-//        for (int i = 0; i < almacenaPeli.getNumRegs(); i++) {
-//            peliObj = almacenaPeli.getRegistro(i);
-//
-//            switch (cmbBuscar.getSelectedIndex()) {
-//                case 0:
-//                    if (peliObj.getTitulo().contains(txtBuscar.getText())) {
-//                        Object nuevaFila[] = {peliObj.getId(), peliObj.getTitulo(), peliObj.getGenero(),
-//                            peliObj.getDuracion(), peliObj.getIdioma(), peliObj.getClasif(),
-//                            peliObj.getTipo()};
-//                        modelo.addRow(nuevaFila);
-//                    }
-//                    break;
-//                case 1:
-//                    if (peliObj.getGenero().contains(txtBuscar.getText())) {
-//                        Object nuevaFila[] = {peliObj.getId(), peliObj.getTitulo(), peliObj.getGenero(),
-//                            peliObj.getDuracion(), peliObj.getIdioma(), peliObj.getClasif(),
-//                            peliObj.getTipo()};
-//                        modelo.addRow(nuevaFila);
-//                    }
-//                    break;
-//                case 2:
-//                    if (peliObj.getTipo().contains(txtBuscar.getText())) {
-//                        Object nuevaFila[] = {peliObj.getId(), peliObj.getTitulo(), peliObj.getGenero(),
-//                            peliObj.getDuracion(), peliObj.getIdioma(), peliObj.getClasif(),
-//                            peliObj.getTipo()};
-//                        modelo.addRow(nuevaFila);
-//                    }
-//                    break;
-//            }
-//        }
-//        tblPeliculas.setModel(modelo);
-//
-//        lblRegistros.setText("Cantidad de registros: " + String.valueOf(modelo.getRowCount()));
+        modelo = new DefaultTableModel(null, titulos);
+
+        for (int i = 0; i < almacenaProgra.getNumRegs(); i++) {
+            prograObj = almacenaProgra.getRegistro(i);
+
+            switch (cmbBuscar.getSelectedIndex()) {
+                case 0:
+                    if (prograObj.getPelicula().getTitulo().contains(txtBuscar.getText())) {
+                        Object nuevaFila[] = {prograObj.getIdProgramacion(), hour.format(prograObj.getHora()), prograObj.getPelicula().getTitulo(), prograObj.getSala().getIdSala(), prograObj.getTanda().getIdTanda()};
+
+                        modelo.addRow(nuevaFila);
+                    }
+                    break;
+            }
+        }
+        tblProgramacion.setModel(modelo);
+
+        lblRegistros.setText("Cantidad de registros: " + String.valueOf(modelo.getRowCount()));
     }//GEN-LAST:event_txtBuscarKeyReleased
 
-    private void tblPeliculasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeliculasMouseClicked
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        if (evt.getClickCount() == 2) {
-            int fila = tblPeliculas.getSelectedRow();
-            getPeliName = String.valueOf(tblPeliculas.getValueAt(fila, 0));
-            dispose();
+        int a = tblProgramacion.getSelectedRow();
+
+        if (a < 0) {
+
+            JOptionPane.showMessageDialog(null,
+                    "Debe seleccionar una fila de la tabla");
+        } else {
+
+            int confirmar = JOptionPane.showConfirmDialog(null,
+                    "¿Esta seguro que desea Eliminar el registro?");
+
+            if (JOptionPane.OK_OPTION == confirmar) {
+                if (almacenaProgra.eliminarProgramacion(a)) {
+                    modelo.removeRow(a);
+                }
+                JOptionPane.showMessageDialog(null,
+                        "Registro Eliminado");
+                if (almacenaPelicula.getNumRegs() > 1) {
+                    cargaTabla();
+
+                }
+            }
         }
-    }//GEN-LAST:event_tblPeliculasMouseClicked
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,7 +307,7 @@ public class frmProgramacion extends javax.swing.JDialog {
     }
 
     public void cargaTabla() {
-        String titulos[] = {"ID", "FECHA", "PELICULA", "SALA", "TANDA"};
+
         modelo = new DefaultTableModel(null, titulos);
 
         for (int i = 0; i < almacenaProgra.getNumRegs(); i++) {
@@ -326,7 +316,7 @@ public class frmProgramacion extends javax.swing.JDialog {
 
             modelo.addRow(nuevaFila);
         }
-        tblPeliculas.setModel(modelo);
+        tblProgramacion.setModel(modelo);
 
         lblRegistros.setText("Cantidad de registros: " + String.valueOf(modelo.getRowCount()));
     }
@@ -339,7 +329,7 @@ public class frmProgramacion extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblRegistros;
-    private javax.swing.JTable tblPeliculas;
+    private javax.swing.JTable tblProgramacion;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
