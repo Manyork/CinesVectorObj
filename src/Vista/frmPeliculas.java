@@ -31,12 +31,12 @@ public class frmPeliculas extends javax.swing.JDialog {
         initComponents();
            }
 
-    public frmPeliculas(java.awt.Frame parent, boolean modal, DatosPelicula almPeli,boolean search) {
+    public frmPeliculas(java.awt.Frame parent, boolean modal, DatosPelicula almPeli,boolean op) {
         super(parent, modal);
         initComponents();
-        btnActualizar.setVisible(false);
-        btnAgregar.setVisible(false);
-        btnEliminar.setVisible(false);
+        btnActualizar.setEnabled(op);
+        btnAgregar.setEnabled(op);
+        btnEliminar.setEnabled(op);
         this.almacenaPeli=almPeli;
         
     }

@@ -35,6 +35,14 @@ public class frmSalas extends javax.swing.JDialog {
         initComponents();
         this.almacenaSala = almacSala;
     }
+    public frmSalas(java.awt.Frame parent, boolean modal, DatosSala almacSala,boolean op) {
+        super(parent, modal);
+        initComponents();
+        this.almacenaSala = almacSala;
+         btnActualizar.setEnabled(op);
+        btnAgregar.setEnabled(op);
+        btnEliminar.setEnabled(op);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

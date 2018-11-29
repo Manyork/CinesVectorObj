@@ -9,7 +9,10 @@ import Datos.DatosPelicula;
 import Datos.DatosProgramacion;
 import Datos.DatosSala;
 import Datos.DatosTanda;
+import Logica.Pelicula;
 import Logica.Programacion;
+import Logica.Sala;
+import Logica.Tanda;
 import com.sun.glass.events.KeyEvent;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -25,6 +28,7 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
     DatosTanda almacenaTanda;
     DatosPelicula almacenaPelicula;
     SimpleDateFormat hour = new SimpleDateFormat("hh:mma");
+    SimpleDateFormat hour1 = new SimpleDateFormat("EEE, MM/YY");
 
     int posi, operac;
 
@@ -347,17 +351,24 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
         // TODO add your handling code here:
          this.setLocationRelativeTo(null);
         Programacion prograObj;
+                   
+                
         if (operac == 2) {
             txtId.setEditable(false);
             prograObj = almacenaProgra.getRegistro(posi);
             txtId.setText(String.valueOf(prograObj.getIdProgramacion()));
+            dtpFecha.setDate(prograObj.getHora());
+            txtPelicula.setText(String.valueOf(prograObj.getPelicula().getId()));
+            txtSala.setText(String.valueOf(prograObj.getSala().getIdSala()));
+            txtTanda.setText(String.valueOf(prograObj.getTanda().getIdTanda()));
+            
 
         }
     }//GEN-LAST:event_formWindowActivated
 
     private void btnBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPeliculaActionPerformed
         if (almacenaPelicula.getNumRegs() > 0) {
-            frmPeliculas win = new frmPeliculas(null, true, almacenaPelicula);
+            frmPeliculas win = new frmPeliculas(null, true, almacenaPelicula,false);
             win.setTitle("Seleccionar Película");
             win.setVisible(true);
             almacenaPelicula = win.almacenaPeli;
@@ -371,7 +382,7 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
         // TODO add your handling code here:
 
         if (almacenaSala.getNumRegs() > 0) {
-            frmSalas win = new frmSalas(null, true, almacenaSala);
+            frmSalas win = new frmSalas(null, true, almacenaSala,false);
             win.setTitle("Seleccionar Sala");
             win.setVisible(true);
             almacenaSala = win.almacenaSala;
