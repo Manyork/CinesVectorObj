@@ -17,9 +17,10 @@ import javax.swing.table.DefaultTableModel;
 public class frmSalas extends javax.swing.JDialog {
 
     DefaultTableModel modelo;
-    DatosSala almacenaSala = new DatosSala(20);
+    DatosSala almacenaSala;
     Sala salaObj = new Sala();
     String titulos[] = {"ID", "Cantidad"};
+    String getSalaName;
 
     /**
      * Creates new form frmSalas
@@ -27,6 +28,11 @@ public class frmSalas extends javax.swing.JDialog {
     public frmSalas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+     public frmSalas(java.awt.Frame parent, boolean modal,DatosSala almacSala) {
+        super(parent, modal);
+        initComponents();
+        this.almacenaSala=almacSala;
     }
 
     /**
@@ -144,6 +150,11 @@ public class frmSalas extends javax.swing.JDialog {
 
                 }
             ));
+            tblSalas.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    tblSalasMouseClicked(evt);
+                }
+            });
             jScrollPane1.setViewportView(tblSalas);
 
             lblRegistros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -188,6 +199,7 @@ public class frmSalas extends javax.swing.JDialog {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
+        cargaTabla();
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
@@ -259,6 +271,18 @@ public class frmSalas extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tblSalasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSalasMouseClicked
+        // TODO add your handling code here:
+                        if(this.getTitle().equals("Seleccionar Película")){
+                    if(evt.getClickCount()==2){
+                        int fila=tblSalas.getSelectedRow();
+                    getSalaName=String.valueOf(tblSalas.getValueAt(fila,0));
+                    dispose();
+                    }
+       
+                        }
+    }//GEN-LAST:event_tblSalasMouseClicked
 
     /**
      * @param args the command line arguments

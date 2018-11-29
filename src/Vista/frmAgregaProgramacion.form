@@ -76,7 +76,7 @@
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="txtPelicula" pref="122" max="32767" attributes="0"/>
                       <Component id="txtId" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtTCapacidad3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtSala" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -90,7 +90,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtTCapacidad1" min="-2" pref="115" max="-2" attributes="0"/>
+                                  <Component id="txtTanda" min="-2" pref="115" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnBuscarTanda" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
@@ -125,7 +125,7 @@
                           </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTCapacidad1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTanda" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="btnBuscarPelicula" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
@@ -135,7 +135,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTCapacidad3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSala" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="btnBuscarSala" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
@@ -175,7 +175,7 @@
             <Property name="text" type="java.lang.String" value="Pelicula:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTCapacidad1">
+        <Component class="javax.swing.JTextField" name="txtTanda">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -185,7 +185,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTCapacidad3">
+        <Component class="javax.swing.JTextField" name="txtSala">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -208,6 +208,9 @@
               <Image iconType="3" name="/img/iconfinder.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarSalaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnBuscarTanda">
           <Properties>
