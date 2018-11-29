@@ -38,23 +38,28 @@ public class IMAX extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mnuProgramacion = new javax.swing.JMenu();
         mnuPeliculas = new javax.swing.JMenuItem();
         mnuSalas = new javax.swing.JMenuItem();
         mnuTandas = new javax.swing.JMenuItem();
-        mnuProgramacion = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(0, 0, 0));
+        setPreferredSize(new java.awt.Dimension(1600, 919));
+        setResizable(false);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/promos.jpg"))); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ba_1.jpg"))); // NOI18N
 
-        jMenu1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu1.setText("Mantenimientos");
+        mnuProgramacion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        mnuProgramacion.setText("Mantenimientos");
 
         mnuPeliculas.setText("Mantenimiento Peliculas");
         mnuPeliculas.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +67,7 @@ public class IMAX extends javax.swing.JFrame {
                 mnuPeliculasActionPerformed(evt);
             }
         });
-        jMenu1.add(mnuPeliculas);
+        mnuProgramacion.add(mnuPeliculas);
 
         mnuSalas.setText("Mantenimiento Salas");
         mnuSalas.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +75,7 @@ public class IMAX extends javax.swing.JFrame {
                 mnuSalasActionPerformed(evt);
             }
         });
-        jMenu1.add(mnuSalas);
+        mnuProgramacion.add(mnuSalas);
 
         mnuTandas.setText("Mantenimiento Tandas");
         mnuTandas.addActionListener(new java.awt.event.ActionListener() {
@@ -78,17 +83,17 @@ public class IMAX extends javax.swing.JFrame {
                 mnuTandasActionPerformed(evt);
             }
         });
-        jMenu1.add(mnuTandas);
+        mnuProgramacion.add(mnuTandas);
 
-        mnuProgramacion.setText("Mantenimiento Programación");
-        mnuProgramacion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mnuProgramacionMouseClicked(evt);
+        jMenuItem2.setText("Mantenimiento Programación");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(mnuProgramacion);
+        mnuProgramacion.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnuProgramacion);
 
         jMenu2.setText("About");
         jMenuBar1.add(jMenu2);
@@ -99,11 +104,11 @@ public class IMAX extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2)
+            .addComponent(jLabel1)
         );
 
         pack();
@@ -126,13 +131,13 @@ public class IMAX extends javax.swing.JFrame {
         win.setVisible(true);
     }//GEN-LAST:event_mnuTandasActionPerformed
 
-    private void mnuProgramacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuProgramacionMouseClicked
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         frmProgramacion win = new frmProgramacion(null, true,almacProgra,almacenaPeli,almacenaSala,almacTanda);
         win.setVisible(true);
-    }//GEN-LAST:event_mnuProgramacionMouseClicked
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    /**
+    /** 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -168,11 +173,11 @@ public class IMAX extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem mnuPeliculas;
     private javax.swing.JMenu mnuProgramacion;
     private javax.swing.JMenuItem mnuSalas;
