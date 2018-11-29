@@ -11,6 +11,7 @@ import Datos.DatosSala;
 import Datos.DatosTanda;
 import Logica.Programacion;
 import com.sun.glass.events.KeyEvent;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,11 +20,12 @@ import javax.swing.JOptionPane;
  */
 public class frmAgregaProgramacion extends javax.swing.JDialog {
 
-      DatosProgramacion almacenaProgra ;
-      DatosSala almacenaSala;
-      DatosTanda almacenaTanda;
-      DatosPelicula almacenaPelicula;
-              
+    DatosProgramacion almacenaProgra;
+    DatosSala almacenaSala;
+    DatosTanda almacenaTanda;
+    DatosPelicula almacenaPelicula;
+    SimpleDateFormat hour = new SimpleDateFormat("hh:mma");
+
     int posi, operac;
 
     /**
@@ -33,23 +35,34 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    public frmAgregaProgramacion(java.awt.Frame parent, boolean modal,DatosProgramacion almProgra) {
+
+    public frmAgregaProgramacion(java.awt.Frame parent, boolean modal, DatosProgramacion almProgra) {
         super(parent, modal);
         initComponents();
-         this.almacenaProgra = almProgra;
+        this.almacenaProgra = almProgra;
     }
 
     public frmAgregaProgramacion(java.awt.Frame parent, boolean modal, DatosProgramacion almacProgra, DatosPelicula almacPelicula, DatosSala almacSala, DatosTanda almacTanda) {
         super(parent, modal);
         initComponents();
         this.almacenaProgra = almacProgra;
-        this.almacenaPelicula=almacPelicula;
-        this.almacenaSala=almacSala;
-        this.almacenaTanda=almacTanda;
+        this.almacenaPelicula = almacPelicula;
+        this.almacenaSala = almacSala;
+        this.almacenaTanda = almacTanda;
 
     }
+    
+       public frmAgregaProgramacion(java.awt.Frame parent, boolean modal, DatosProgramacion almacProgra, DatosPelicula almacPelicula, DatosSala almacSala, DatosTanda almacTanda,int pos, int operacion) {
+        super(parent, modal);
+        initComponents();
+        this.almacenaProgra = almacProgra;
+        this.almacenaPelicula = almacPelicula;
+        this.almacenaSala = almacSala;
+        this.almacenaTanda = almacTanda;
+        this.posi = pos;
+        this.operac = operacion;
 
- 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,10 +84,10 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
         txtTanda = new javax.swing.JTextField();
         txtPelicula = new javax.swing.JTextField();
         txtSala = new javax.swing.JTextField();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
         btnBuscarPelicula = new javax.swing.JButton();
         btnBuscarSala = new javax.swing.JButton();
         btnBuscarTanda = new javax.swing.JButton();
+        dtpFecha = new org.jdesktop.swingx.JXDatePicker();
         panel2 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -126,6 +139,11 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
         });
 
         btnBuscarTanda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconfinder.png"))); // NOI18N
+        btnBuscarTanda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarTandaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -155,9 +173,10 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtTanda, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnBuscarTanda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(57, Short.MAX_VALUE))
+                                .addComponent(btnBuscarTanda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(dtpFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(btnBuscarSala, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -170,7 +189,7 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jlabel03)
-                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dtpFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +269,7 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,36 +298,40 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-//        String valTipo = "";
-//        if (!txtId.getText().equals("")) {
-//
-//            Programacion prograObj;/= new Programacion(1,);
-//
-//            if (operac == 1) {   //Se guarda un nuevo registro
-//                if (!almacenaProgra.yaExiste(Integer.parseInt(txtId.getText()))) {
-//
-//                    if (almacenaProgra.insertProgramacion(prograObj)) {
-//                        JOptionPane.showMessageDialog(this, "Registro almacenado");
-//                    } else {
-//                        JOptionPane.showMessageDialog(this, "Vector lleno, borre registros");
-//                    }
-//
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "El id ya existe");
-//                }
-//            } else { //Editar un registro existente
-//
-//                if (almacenaProgra.editaSala(posi, prograObj)) {
-//                    JOptionPane.showMessageDialog(this, "Resgistro Editado");
-//                    txtId.setEditable(true);
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "Error de edición");
-//                }
-//            }
-//            this.dispose();
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Faltan Datos");
-//        }
+        //            Programacion prograObj = new Programacion(Integer.parseInt(txtId.getText()), dtpFecha.getDate(), almacenaPelicula.getRegistro(Integer.parseInt(txtPelicula.getText())), almacenaSala.getRegistro(Integer.parseInt(txtSala.getText())), almacenaTanda.getRegistro(Integer.parseInt(txtTanda.getText())));
+        String valTipo = "";
+        if (!txtId.getText().isEmpty() && dtpFecha.getDate() != null && !txtPelicula.getText().isEmpty()&&!txtSala.getText().isEmpty()&&!txtTanda.getText().isEmpty()) {
+            // String strDate = dtpTanda.getText();
+            try {
+                Programacion prograObj = new Programacion(Integer.parseInt(txtId.getText()), dtpFecha.getDate(), almacenaPelicula.getRegistro(Integer.parseInt(txtPelicula.getText())-1), almacenaSala.getRegistro(Integer.parseInt(txtSala.getText())-1), almacenaTanda.getRegistro(Integer.parseInt(txtTanda.getText())-1));
+
+                if (operac == 1) {   //Se guarda un nuevo registro
+                    if (!almacenaProgra.yaExiste(Integer.parseInt(txtId.getText()))) {
+
+                        if (almacenaProgra.insertProgramacion(prograObj)) {
+                            JOptionPane.showMessageDialog(this, "Registro almacenado");
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Vector lleno, borre registros");
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El id ya existe");
+                    }
+                } else { //Editar un registro existente
+
+                    if (almacenaProgra.editaProgramacion(posi, prograObj)) {
+                        JOptionPane.showMessageDialog(this, "Resgistro Editado");
+                        txtId.setEditable(true);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Error de edición");
+                    }
+                }
+                this.dispose();
+            } catch (Exception e) {
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Faltan Datos");
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
@@ -332,23 +355,43 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowActivated
 
     private void btnBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPeliculaActionPerformed
-        frmPeliculas win = new frmPeliculas(null, true, almacenaPelicula);
-        win.setTitle("Seleccionar Película");
-        win.setVisible(true);
-        almacenaPelicula = win.almacenaPeli;
-        txtS.setText(win.getPeliName);
-
+        if (almacenaPelicula.getNumRegs() > 0) {
+            frmPeliculas win = new frmPeliculas(null, true, almacenaPelicula);
+            win.setTitle("Seleccionar Película");
+            win.setVisible(true);
+            almacenaPelicula = win.almacenaPeli;
+            txtPelicula.setText(win.getPeliName);
+        } else {
+            JOptionPane.showMessageDialog(this, "No existen peliculas disponibles para seleccionar, favor agregarlas desde la pantalla @Gestion Peliculas");
+        }
     }//GEN-LAST:event_btnBuscarPeliculaActionPerformed
 
     private void btnBuscarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarSalaActionPerformed
         // TODO add your handling code here:
-         frmSalas win = new frmSalas(null, true, almacenaSala);
-        win.setTitle("Seleccionar Película");
-        win.setVisible(true);
-        almacenaSala = win.almacenaSala;
-        txtPelicula.setText(win.getSalaName);
-        
+
+        if (almacenaSala.getNumRegs() > 0) {
+            frmSalas win = new frmSalas(null, true, almacenaSala);
+            win.setTitle("Seleccionar Sala");
+            win.setVisible(true);
+            almacenaSala = win.almacenaSala;
+            txtSala.setText(win.getSalaName);
+        } else {
+            JOptionPane.showMessageDialog(this, "No existen salas disponibles para seleccionar, favor agregarlas desde la pantalla @Gestion Salas");
+        }
     }//GEN-LAST:event_btnBuscarSalaActionPerformed
+
+    private void btnBuscarTandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarTandaActionPerformed
+        // TODO add your handling code here:
+        if (almacenaTanda.getNumRegs() > 0) {
+            frmTandas win = new frmTandas(null, true, almacenaTanda, false);
+            win.setTitle("Seleccionar Tanda");
+            win.setVisible(true);
+            almacenaTanda = win.almacenaTanda;
+            txtTanda.setText(win.getTandaName);
+        } else {
+            JOptionPane.showMessageDialog(this, "No existen Tandas disponibles para seleccionar, favor agregarlas desde la pantalla @Gestion Tandas");
+        }
+    }//GEN-LAST:event_btnBuscarTandaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -404,11 +447,11 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private org.jdesktop.swingx.JXDatePicker dtpFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private javax.swing.JLabel jlabel03;
     private javax.swing.JPanel panel1;
     private javax.swing.JPanel panel2;

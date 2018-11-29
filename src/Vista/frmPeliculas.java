@@ -307,7 +307,7 @@ public class frmPeliculas extends javax.swing.JDialog {
                 if(this.getTitle().equals("Seleccionar Película")){
                     if(evt.getClickCount()==2){
                         int fila=tblPeliculas.getSelectedRow();
-                    getPeliName=tblPeliculas.getValueAt(fila, 0)+"-"+tblPeliculas.getValueAt(fila, 1);
+                    getPeliName=String.valueOf(tblPeliculas.getValueAt(fila, 0));
                     dispose();
                     }
                 
