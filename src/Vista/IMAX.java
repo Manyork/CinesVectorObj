@@ -45,7 +45,7 @@ public class IMAX extends javax.swing.JFrame {
         mnuPeliculas = new javax.swing.JMenuItem();
         mnuSalas = new javax.swing.JMenuItem();
         mnuTandas = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mnuProgra = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -86,13 +86,13 @@ public class IMAX extends javax.swing.JFrame {
         });
         mnuProgramacion.add(mnuTandas);
 
-        jMenuItem2.setText("Mantenimiento Programación");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        mnuProgra.setText("Mantenimiento Programación");
+        mnuProgra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                mnuPrograActionPerformed(evt);
             }
         });
-        mnuProgramacion.add(jMenuItem2);
+        mnuProgramacion.add(mnuProgra);
 
         jMenuBar1.add(mnuProgramacion);
 
@@ -132,11 +132,11 @@ public class IMAX extends javax.swing.JFrame {
         win.setVisible(true);
     }//GEN-LAST:event_mnuTandasActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void mnuPrograActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrograActionPerformed
         // TODO add your handling code here:
         frmProgramacion win = new frmProgramacion(null, true,almacProgra,almacenaPeli,almacenaSala,almacTanda);
         win.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_mnuPrograActionPerformed
 
     /** 
      * @param args the command line arguments
@@ -178,8 +178,8 @@ public class IMAX extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem mnuPeliculas;
+    private javax.swing.JMenuItem mnuProgra;
     private javax.swing.JMenu mnuProgramacion;
     private javax.swing.JMenuItem mnuSalas;
     private javax.swing.JMenuItem mnuTandas;

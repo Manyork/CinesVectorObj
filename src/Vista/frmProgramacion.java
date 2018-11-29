@@ -10,7 +10,6 @@ import Datos.DatosProgramacion;
 import Datos.DatosSala;
 import Datos.DatosTanda;
 import Logica.Programacion;
-import com.sun.java.swing.plaf.windows.resources.windows;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,7 +27,8 @@ public class frmProgramacion extends javax.swing.JDialog {
     DatosTanda almacenaTanda;
     DatosPelicula almacenaPelicula;
     String getPeliName;
-    SimpleDateFormat hour = new SimpleDateFormat("EEE, MMM d, ''yy");
+    SimpleDateFormat hour = new SimpleDateFormat("EEE, MM/YY");
+    SimpleDateFormat hour1 = new SimpleDateFormat("hh:mm a");
     String titulos[] = {"ID", "FECHA", "PELICULA", "SALA", "TANDA"};
 
     /**
@@ -226,7 +226,7 @@ public class frmProgramacion extends javax.swing.JDialog {
             switch (cmbBuscar.getSelectedIndex()) {
                 case 0:
                     if (prograObj.getPelicula().getTitulo().contains(txtBuscar.getText())) {
-                        Object nuevaFila[] = {prograObj.getIdProgramacion(), hour.format(prograObj.getHora()), prograObj.getPelicula().getTitulo(), prograObj.getSala().getIdSala(), prograObj.getTanda().getIdTanda()};
+                        Object nuevaFila[] = {prograObj.getIdProgramacion(), hour.format(prograObj.getHora()), prograObj.getPelicula().getTitulo(), prograObj.getSala().getIdSala(), hour1.format(prograObj.getTanda().getHora())};
 
                         modelo.addRow(nuevaFila);
                     }
@@ -314,7 +314,8 @@ public class frmProgramacion extends javax.swing.JDialog {
 
         for (int i = 0; i < almacenaProgra.getNumRegs(); i++) {
             prograObj = almacenaProgra.getRegistro(i);
-            Object nuevaFila[] = {prograObj.getIdProgramacion(), hour.format(prograObj.getHora()), prograObj.getPelicula().getTitulo(), prograObj.getSala().getIdSala(), prograObj.getTanda().getIdTanda()};
+            Object nuevaFila[] = {prograObj.getIdProgramacion(), hour.format(prograObj.getHora()), prograObj.getPelicula().getTitulo(), 
+                prograObj.getSala().getIdSala(), hour1.format(prograObj.getTanda().getHora())};
 
             modelo.addRow(nuevaFila);
         }
