@@ -236,6 +236,7 @@ public class frmAgregaTanda extends javax.swing.JDialog {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
+         this.setLocationRelativeTo(null);
             Tanda salaObj;
         if (operac == 2) {
             txtId.setEditable(false);

@@ -118,6 +118,7 @@ public class SelectorArchivos extends javax.swing.JDialog {
                     }
                 });
                 dialog.setVisible(true);
+                 dialog.setLocationRelativeTo(null);
             }
         });
     }

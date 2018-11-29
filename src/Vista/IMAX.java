@@ -26,6 +26,7 @@ public class IMAX extends javax.swing.JFrame {
      */
     public IMAX() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

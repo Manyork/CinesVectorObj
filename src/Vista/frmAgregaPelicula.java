@@ -442,6 +442,7 @@ public class frmAgregaPelicula extends javax.swing.JDialog {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
+         this.setLocationRelativeTo(null);
         ImageIcon imagen;
         Pelicula peliObj;
         if (operac == 2) {
@@ -458,9 +459,9 @@ public class frmAgregaPelicula extends javax.swing.JDialog {
             } else {
                 rdb3D.setSelected(true);
             }
-//            if (idImg.equals("")) {
-//                idImg="defaultPic.png";
-//            }
+            if (idImg.equals("")) {
+                idImg="defaultPic.png";
+            }
 
             imagen = new ImageIcon(getClass().getResource("/img/" + peliObj.getImagen()));
             ImageIcon imgAjust = new ImageIcon(imagen.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_DEFAULT));

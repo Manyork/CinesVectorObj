@@ -29,8 +29,7 @@ public class frmPeliculas extends javax.swing.JDialog {
     public frmPeliculas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
-    }
+           }
 
     public frmPeliculas(java.awt.Frame parent, boolean modal, DatosPelicula almPeli,boolean search) {
         super(parent, modal);
@@ -213,6 +212,7 @@ public class frmPeliculas extends javax.swing.JDialog {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
+         this.setLocationRelativeTo(null);
         cargaTabla();
     }//GEN-LAST:event_formWindowActivated
 

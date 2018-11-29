@@ -6,7 +6,6 @@
 package Vista;
 
 import Datos.DatosSala;
-import Datos.DatosTanda;
 import Logica.Sala;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -37,10 +36,6 @@ public class frmSalas extends javax.swing.JDialog {
         this.almacenaSala = almacSala;
     }
 
-    frmSalas(Object object, boolean b, DatosTanda almacenaTanda) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,6 +61,7 @@ public class frmSalas extends javax.swing.JDialog {
 
             setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
             setTitle("Gestión de Películas");
+            setLocation(new java.awt.Point(0, 0));
             addWindowFocusListener(new java.awt.event.WindowFocusListener() {
                 public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                     formWindowGainedFocus(evt);
@@ -205,6 +201,7 @@ public class frmSalas extends javax.swing.JDialog {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
+         this.setLocationRelativeTo(null);
         cargaTabla();
     }//GEN-LAST:event_formWindowActivated
 
@@ -328,7 +325,8 @@ public class frmSalas extends javax.swing.JDialog {
                         System.exit(0);
                     }
                 });
-                dialog.setVisible(true);
+                 dialog.setVisible(true);
+                 dialog.setLocationRelativeTo(null);
             }
         });
     }
