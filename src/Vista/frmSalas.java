@@ -6,6 +6,7 @@
 package Vista;
 
 import Datos.DatosSala;
+import Datos.DatosTanda;
 import Logica.Sala;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,10 +30,15 @@ public class frmSalas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-     public frmSalas(java.awt.Frame parent, boolean modal,DatosSala almacSala) {
+
+    public frmSalas(java.awt.Frame parent, boolean modal, DatosSala almacSala) {
         super(parent, modal);
         initComponents();
-        this.almacenaSala=almacSala;
+        this.almacenaSala = almacSala;
+    }
+
+    frmSalas(Object object, boolean b, DatosTanda almacenaTanda) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -274,14 +280,14 @@ public class frmSalas extends javax.swing.JDialog {
 
     private void tblSalasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSalasMouseClicked
         // TODO add your handling code here:
-                        if(this.getTitle().equals("Seleccionar Película")){
-                    if(evt.getClickCount()==2){
-                        int fila=tblSalas.getSelectedRow();
-                    getSalaName=String.valueOf(tblSalas.getValueAt(fila,0));
-                    dispose();
-                    }
-       
-                        }
+        if (this.getTitle().equals("Seleccionar Sala")) {
+            if (evt.getClickCount() == 2) {
+                int fila = tblSalas.getSelectedRow();
+                getSalaName = String.valueOf(tblSalas.getValueAt(fila, 0));
+                dispose();
+            }
+
+        }
     }//GEN-LAST:event_tblSalasMouseClicked
 
     /**
