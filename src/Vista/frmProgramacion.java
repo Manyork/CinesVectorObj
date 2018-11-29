@@ -10,6 +10,7 @@ import Datos.DatosProgramacion;
 import Datos.DatosSala;
 import Datos.DatosTanda;
 import Logica.Programacion;
+import com.sun.java.swing.plaf.windows.resources.windows;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -199,6 +200,7 @@ public class frmProgramacion extends javax.swing.JDialog {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
+        this.setLocationRelativeTo(null);
         cargaTabla();
     }//GEN-LAST:event_formWindowActivated
 
@@ -206,7 +208,7 @@ public class frmProgramacion extends javax.swing.JDialog {
         //TODO add your handling code here:
         if (tblProgramacion.getSelectedRow() >= 0) {
             frmAgregaProgramacion win = new frmAgregaProgramacion(null, true, almacenaProgra, almacenaPelicula, almacenaSala, almacenaTanda, tblProgramacion.getSelectedRow(), 2);
-            win.setTitle("Actualizar Película");
+            win.setTitle("Actualizar Promgramacion");
             win.setVisible(true);
             almacenaProgra = win.almacenaProgra;
             cargaTabla();
