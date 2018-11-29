@@ -35,11 +35,16 @@ public class frmAgregaPelicula extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    public frmAgregaPelicula(java.awt.Frame parent, boolean modal,DatosPelicula almPeli) {
+        super(parent, modal);
+        initComponents();
+        this.almacenaPeli = almPeli;
+    }
+
 
     public frmAgregaPelicula(java.awt.Frame parent, boolean modal, DatosPelicula almPeli, int pos, int operacion) {
         super(parent, modal);
         initComponents();
-        this.almacenaPeli = almPeli;
         this.posi = pos;
         this.operac = operacion;
         if (this.operac == 2) {

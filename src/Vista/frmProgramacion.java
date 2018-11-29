@@ -18,6 +18,7 @@ public class frmProgramacion extends javax.swing.JDialog {
     DefaultTableModel modelo;
     DatosProgramacion almacenaProgra = new DatosProgramacion(20);
     Programacion prograObj = new Programacion();
+    String getPeliName;
 
     /**
      * Creates new form frmPeliculas
@@ -137,6 +138,11 @@ public class frmProgramacion extends javax.swing.JDialog {
 
                 }
             ));
+            tblPeliculas.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    tblPeliculasMouseClicked(evt);
+                }
+            });
             jScrollPane1.setViewportView(tblPeliculas);
 
             lblRegistros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -164,7 +170,7 @@ public class frmProgramacion extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(lblRegistros)
-                    .addContainerGap(15, Short.MAX_VALUE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
 
             pack();
@@ -240,6 +246,15 @@ public class frmProgramacion extends javax.swing.JDialog {
 //
 //        lblRegistros.setText("Cantidad de registros: " + String.valueOf(modelo.getRowCount()));
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void tblPeliculasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeliculasMouseClicked
+        // TODO add your handling code here:
+                if(evt.getClickCount()==2){
+        int fila= tblPeliculas.getSelectedRow();
+            getPeliName= tblPeliculas.getValueAt(fila, 0)+" - "+tblPeliculas.getValueAt(fila, 1);
+            dispose();
+        }
+    }//GEN-LAST:event_tblPeliculasMouseClicked
 
     /**
      * @param args the command line arguments

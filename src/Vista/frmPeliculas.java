@@ -26,7 +26,16 @@ public class frmPeliculas extends javax.swing.JDialog {
     public frmPeliculas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
     }
+        public frmPeliculas(java.awt.Frame parent, boolean modal, int op) {
+        super(parent, modal);
+        initComponents();
+        btnActualizar.setVisible(false);
+        btnAgregar.setVisible(false);
+        btnEliminar.setVisible(false);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -187,6 +196,7 @@ public class frmPeliculas extends javax.swing.JDialog {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
+        cargaTabla();
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
@@ -251,7 +261,7 @@ public class frmPeliculas extends javax.swing.JDialog {
         // TODO add your handling code here:
         int a = tblPeliculas.getSelectedRow();
 
-          if (a < 0) {
+        if (a < 0) {
 
             JOptionPane.showMessageDialog(null,
                     "Debe seleccionar una fila de la tabla");
@@ -261,15 +271,15 @@ public class frmPeliculas extends javax.swing.JDialog {
                     "¿Esta seguro que desea Eliminar el registro?");
 
             if (JOptionPane.OK_OPTION == confirmar) {
-                if(almacenaPeli.eliminarPelicula(a)){
-                modelo.removeRow(a);
+                if (almacenaPeli.eliminarPelicula(a)) {
+                    modelo.removeRow(a);
                 }
-                 JOptionPane.showMessageDialog(null,
+                JOptionPane.showMessageDialog(null,
                         "Registro Eliminado");
-                 if(almacenaPeli.getNumRegs()>1){
-                 cargaTabla();
-                 
-                 } 
+                if (almacenaPeli.getNumRegs() > 1) {
+                    cargaTabla();
+
+                }
             }
         }
 

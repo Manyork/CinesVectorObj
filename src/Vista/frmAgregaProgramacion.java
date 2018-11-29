@@ -62,7 +62,7 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtTCapacidad1 = new javax.swing.JTextField();
-        txtTCapacidad2 = new javax.swing.JTextField();
+        txtPelicula = new javax.swing.JTextField();
         txtTCapacidad3 = new javax.swing.JTextField();
         jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
         btnBuscarPelicula = new javax.swing.JButton();
@@ -100,7 +100,7 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
 
         txtTCapacidad1.setEditable(false);
 
-        txtTCapacidad2.setEnabled(false);
+        txtPelicula.setEnabled(false);
 
         txtTCapacidad3.setEditable(false);
 
@@ -127,7 +127,7 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtTCapacidad2, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                    .addComponent(txtPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                     .addComponent(txtId, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtTCapacidad3, javax.swing.GroupLayout.Alignment.LEADING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -164,7 +164,7 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
                     .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(txtTCapacidad2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtTCapacidad1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -270,7 +270,7 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
         String valTipo = "";
         if (!txtId.getText().equals("")) {
 
-            Sala salaObj = new Sala(Integer.parseInt(txtId.getText()), Integer.parseInt(txtTCapacidad2.getText()));
+            Sala salaObj = new Sala(Integer.parseInt(txtId.getText()), Integer.parseInt(txtPelicula.getText()));
 
             if (operac == 1) {   //Se guarda un nuevo registro
                 if (!almacenaSala.alreadyExist(Integer.parseInt(txtId.getText()))) {
@@ -320,11 +320,12 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowActivated
 
     private void btnBuscarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPeliculaActionPerformed
-        frmPeliculas win = new frmPeliculas(null, true);
+        frmPeliculas win = new frmPeliculas(null, true,1);
         win.setTitle("Seleccionar Película");
         win.setVisible(true);
         almacenaPeli = win.almacenaPeli;
-        win.cargaTabla();
+        txtPelicula.setText("");
+
     }//GEN-LAST:event_btnBuscarPeliculaActionPerformed
 
     /**
@@ -390,8 +391,8 @@ public class frmAgregaProgramacion extends javax.swing.JDialog {
     private javax.swing.JPanel panel1;
     private javax.swing.JPanel panel2;
     private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtPelicula;
     private javax.swing.JTextField txtTCapacidad1;
-    private javax.swing.JTextField txtTCapacidad2;
     private javax.swing.JTextField txtTCapacidad3;
     // End of variables declaration//GEN-END:variables
 }
