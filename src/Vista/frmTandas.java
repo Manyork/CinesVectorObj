@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class frmTandas extends javax.swing.JDialog {
 
     DefaultTableModel modelo;
-    DatosTanda almacenaTanda = new DatosTanda(20);
+    DatosTanda almacenaTanda ;
     Tanda tandaObj = new Tanda();
     String titulos[] = {"ID TANDA", "HORA"};
     SimpleDateFormat hour = new SimpleDateFormat("hh:mma");
@@ -30,6 +30,12 @@ public class frmTandas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+      public frmTandas(java.awt.Frame parent, boolean modal,DatosTanda almTanda) {
+        super(parent, modal);
+        initComponents();
+        this.almacenaTanda=almTanda;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -192,6 +198,7 @@ public class frmTandas extends javax.swing.JDialog {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
+        cargaTabla();
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus

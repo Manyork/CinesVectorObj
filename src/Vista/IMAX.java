@@ -5,11 +5,21 @@
  */
 package Vista;
 
+import Datos.DatosPelicula;
+import Datos.DatosProgramacion;
+import Datos.DatosSala;
+import Datos.DatosTanda;
+
 /**
  *
  * @author Manyor
  */
 public class IMAX extends javax.swing.JFrame {
+
+    DatosPelicula almacenaPeli = new DatosPelicula(20);
+    DatosSala almacenaSala= new DatosSala(20);
+    DatosTanda almacTanda=new DatosTanda(20);
+    DatosProgramacion almacProgra=new DatosProgramacion(20);
 
     /**
      * Creates new form IMAX
@@ -100,26 +110,26 @@ public class IMAX extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuSalasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSalasActionPerformed
-        frmSalas win = new frmSalas(null, true);
+        frmSalas win = new frmSalas(null, true,almacenaSala);
         win.setVisible(true);
     }//GEN-LAST:event_mnuSalasActionPerformed
 
     private void mnuPeliculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPeliculasActionPerformed
         // TODO add your handling code here:
-        frmPeliculas win = new frmPeliculas(null, true);
+        frmPeliculas win = new frmPeliculas(null, true, almacenaPeli);
         win.setVisible(true);
     }//GEN-LAST:event_mnuPeliculasActionPerformed
 
     private void mnuTandasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTandasActionPerformed
         // TODO add your handling code here:
-        frmTandas win= new frmTandas(null, true);
+        frmTandas win = new frmTandas(null, true,almacTanda);
         win.setVisible(true);
     }//GEN-LAST:event_mnuTandasActionPerformed
 
     private void mnuProgramacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuProgramacionMouseClicked
         // TODO add your handling code here:
-        frmAgregaProgramacion win = new frmAgregaProgramacion(null, true);
-         win.setVisible(true);
+        frmProgramacion win = new frmProgramacion(null, true,almacProgra,almacenaPeli,almacenaSala,almacTanda);
+        win.setVisible(true);
     }//GEN-LAST:event_mnuProgramacionMouseClicked
 
     /**

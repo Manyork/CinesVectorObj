@@ -5,7 +5,10 @@
  */
 package Vista;
 
+import Datos.DatosPelicula;
 import Datos.DatosProgramacion;
+import Datos.DatosSala;
+import Datos.DatosTanda;
 import Logica.Programacion;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,8 +19,11 @@ import javax.swing.table.DefaultTableModel;
 public class frmProgramacion extends javax.swing.JDialog {
 
     DefaultTableModel modelo;
-    DatosProgramacion almacenaProgra = new DatosProgramacion(20);
+    DatosProgramacion almacenaProgra;
     Programacion prograObj = new Programacion();
+    DatosSala almacenaSala;
+    DatosTanda almacenaTanda;
+    DatosPelicula almacenaPelicula;
     String getPeliName;
 
     /**
@@ -26,6 +32,14 @@ public class frmProgramacion extends javax.swing.JDialog {
     public frmProgramacion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+    public frmProgramacion(java.awt.Frame parent, boolean modal, DatosProgramacion almProgra, DatosPelicula almacPeli, DatosSala almacSala,DatosTanda almTanda) {
+        super(parent, modal);
+        initComponents();
+        this.almacenaPelicula=almacPeli;
+        this.almacenaProgra=almProgra;
+        this.almacenaSala=almacSala;
+        this.almacenaTanda=almTanda;
     }
 
     /**
@@ -178,7 +192,7 @@ public class frmProgramacion extends javax.swing.JDialog {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        frmAgregaProgramacion win = new frmAgregaProgramacion(null, true, almacenaProgra, -1, 1);
+        frmAgregaProgramacion win = new frmAgregaProgramacion(null, true,almacenaProgra,almacenaPelicula,almacenaSala,almacenaTanda);
         win.setTitle("Agregar Película Nueva");
         win.setVisible(true);
         almacenaProgra = win.almacenaProgra;
@@ -249,9 +263,9 @@ public class frmProgramacion extends javax.swing.JDialog {
 
     private void tblPeliculasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeliculasMouseClicked
         // TODO add your handling code here:
-                if(evt.getClickCount()==2){
-        int fila= tblPeliculas.getSelectedRow();
-            getPeliName= tblPeliculas.getValueAt(fila, 0)+" - "+tblPeliculas.getValueAt(fila, 1);
+        if (evt.getClickCount() == 2) {
+            int fila = tblPeliculas.getSelectedRow();
+            getPeliName = tblPeliculas.getValueAt(fila, 0) + " - " + tblPeliculas.getValueAt(fila, 1);
             dispose();
         }
     }//GEN-LAST:event_tblPeliculasMouseClicked

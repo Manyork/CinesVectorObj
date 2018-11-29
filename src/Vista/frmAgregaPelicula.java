@@ -47,6 +47,7 @@ public class frmAgregaPelicula extends javax.swing.JDialog {
         initComponents();
         this.posi = pos;
         this.operac = operacion;
+         this.almacenaPeli = almPeli;
         if (this.operac == 2) {
             idImg = almacenaPeli.getRegistro(pos).getImagen();
         }
@@ -355,7 +356,7 @@ public class frmAgregaPelicula extends javax.swing.JDialog {
                 peliObj.setImagen("defaultPic.png");
             }
             if (operac == 1) {   //Se guarda un nuevo registro
-                if (!almacenaPeli.yaExiste(Integer.parseInt(txtId.getText()))) {
+                if (!almacenaPeli.alreadyExist(Integer.parseInt(txtId.getText()))) {
 
                     if (almacenaPeli.insertPelicula(peliObj)) {
                         JOptionPane.showMessageDialog(this, "Registro almacenado");

@@ -73,7 +73,7 @@ public class DatosPelicula {
         return this.vect[pos];
     }
 
-    public boolean yaExiste(int id) {
+    public boolean alreadyExist(int id) {
         System.err.println(this.getNumRegs());
         if (this.numRegs != 0) {
             for (int i=0; i<this.numRegs; i++) {

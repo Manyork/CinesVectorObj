@@ -17,8 +17,11 @@ import javax.swing.table.DefaultTableModel;
 public class frmPeliculas extends javax.swing.JDialog {
 
     DefaultTableModel modelo;
-    DatosPelicula almacenaPeli = new DatosPelicula(20);
+    DatosPelicula almacenaPeli;
     Pelicula peliObj = new Pelicula();
+    String getPeliName;
+
+ 
 
     /**
      * Creates new form frmPeliculas
@@ -28,14 +31,23 @@ public class frmPeliculas extends javax.swing.JDialog {
         initComponents();
 
     }
-        public frmPeliculas(java.awt.Frame parent, boolean modal, int op) {
+
+    public frmPeliculas(java.awt.Frame parent, boolean modal, DatosPelicula almPeli,boolean search) {
         super(parent, modal);
         initComponents();
         btnActualizar.setVisible(false);
         btnAgregar.setVisible(false);
         btnEliminar.setVisible(false);
+        this.almacenaPeli=almPeli;
+        
     }
 
+    public frmPeliculas(java.awt.Frame parent, boolean modal, DatosPelicula almPeli) {
+        super(parent, modal);
+        initComponents();
+          this.almacenaPeli=almPeli;
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -152,6 +164,11 @@ public class frmPeliculas extends javax.swing.JDialog {
 
                 }
             ));
+            tblPeliculas.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    tblPeliculasMouseClicked(evt);
+                }
+            });
             jScrollPane1.setViewportView(tblPeliculas);
 
             lblRegistros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -284,6 +301,18 @@ public class frmPeliculas extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tblPeliculasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeliculasMouseClicked
+        // TODO add your handling code here:
+                if(this.getTitle().equals("Seleccionar Película")){
+                    if(evt.getClickCount()==2){
+                        int fila=tblPeliculas.getSelectedRow();
+                    getPeliName=tblPeliculas.getValueAt(fila, 0)+"-"+tblPeliculas.getValueAt(fila, 1);
+                    dispose();
+                    }
+                
+                }
+    }//GEN-LAST:event_tblPeliculasMouseClicked
     /**
      * @param args the command line arguments
      */
